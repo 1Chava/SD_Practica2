@@ -12,7 +12,7 @@
 
 ### Objetivo de la práctica 
 Que el alumno comprenda la importancia de la programación distribuida y el trabajo en equipo.
-### Tecnologías a aplicar: 
+### Tecnologías a aplicar: 
 Sockets, RMI, SOAP, Multi-cast, Hilos (threads), POO, Protocolos de comunicación. 
 ### Actividades
 A partir de la práctica 1, desarrollará una aplicación para controlar un reloj con huso horario a distancia. De acuerdo a los siguientes requerimientos: 
