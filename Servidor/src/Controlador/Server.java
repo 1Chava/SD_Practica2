@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,11 +25,11 @@ public class Server {
     private ServerSocket serverSocket;
     private Reloj primario;
     private Boolean flag;
-
+    
     public void start(int port) throws IOException {
         this.serverSocket = new ServerSocket(port);
         this.flag = true;
-        for(int x = 0; x < 1; x++){
+        for(int x = 0; x < 3; x++){
             new EchoClientHandler(serverSocket.accept()).start();
         }
     }
@@ -61,17 +62,19 @@ public class Server {
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 this.tipo = in.readLine();
-                System.out.println(this.tipo);
                 while (true){
+                    System.out.println(Server.this.flag);
                     if(Server.this.flag){
-                        if(this.tipo == "Primario"){
+                        if(this.tipo.equals("Primario")){
                             out.println(Server.this.primario.toString());
-                        } else if(this.tipo == "Secundario"){
+                            System.out.println("ENVIADO -> " + Server.this.primario.toString());
+                        } else if(this.tipo.equals("Secundario")){
                             out.println(Server.this.primario.cambiaPrimarioSecundario());
+                            System.out.println("ENVIADO -> " + Server.this.primario.cambiaPrimarioSecundario());
                         } else {
-                            out.println(Server.this.primario.cambiaPrimarioTerciario());                            
+                            out.println(Server.this.primario.cambiaPrimarioTerciario()); 
+                            System.out.println("ENVIADO -> " + Server.this.primario.cambiaPrimarioTerciario());
                         }
-                        System.out.println("ENVIADO");
                     }
                 }    
             } catch (IOException ex) {
