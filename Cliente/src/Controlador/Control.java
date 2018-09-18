@@ -78,15 +78,7 @@ public class Control implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            String horaPrimario = this.textPrimario.getText();
-            DateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-            Date datePrimario = sdf.parse(horaPrimario);
-            this.relojPrimario.addSeconds(datePrimario, this.segundosPrimario);
-            this.textPrimario.setText(this.relojPrimario.toString());
-        } catch (ParseException ex) {
-            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.textPrimario.setText(this.relojPrimario.toString());
     }
 
     public void cancelTimer() {
@@ -94,7 +86,7 @@ public class Control implements ActionListener {
     }
 
     public void startTimer() {
-        this.timer = new Timer(1000, this);
+        this.timer = new Timer(500, this);
         this.timer.start();
     }
 
@@ -117,7 +109,7 @@ public class Control implements ActionListener {
                 try {
                     String resp = in.readLine();
                     Control.this.relojPrimario = Control.this.stringReloj(resp);
-                    System.out.println("RECIVED" + resp);
+                    System.out.println("RECIVED ->" + resp);
                 } catch (IOException ex) {
                     Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
                 }

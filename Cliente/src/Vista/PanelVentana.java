@@ -15,19 +15,19 @@ import javax.swing.JTextField;
  *
  * @author chava
  */
-public class PanelVentana extends JPanel{
-    
+public class PanelVentana extends JPanel {
+
     private JTextField relojes;
     private JButton bEditar;
     private JButton bEnviar;
     private Control control;
     private String[] tipos = {"Principal", "Secundario", "Terciario"};
-    
-    public PanelVentana(String title){
+
+    public PanelVentana(String title) {
         initComponents(title);
     }
-    
-    private void initComponents(String title){
+
+    private void initComponents(String title) {
         setLayout(null);
         this.relojes = new JTextField();
         this.control = new Control();
@@ -36,9 +36,9 @@ public class PanelVentana extends JPanel{
         int incY = 30;
         int ancho = 170;
         int alto = 30;
-            relojes.setBounds(x, y  * incY, ancho, alto);
-            this.control.agregarElemento(relojes, title);
-            relojes.addActionListener(this.control);
-            add(relojes);
+        relojes.setBounds(x, y + incY, ancho, alto);
+        this.control.agregarElemento(relojes, title);
+        relojes.addActionListener(this.control);
+        add(relojes);
     }
 }
